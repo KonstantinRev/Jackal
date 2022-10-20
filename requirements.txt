@@ -1,0 +1,9 @@
+Django==4.0.3
+Jinja2==3.0.3
+jsonpatch==1.22
+jsonpointer==2.0
+jsonschema==3.2.0
+dj-database-url==0.4.1
+gunicorn==19.6.0
+psycopg2==2.6.2
+whitenoise==3.2.2
