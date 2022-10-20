@@ -1,0 +1,56 @@
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+
+class User(AbstractUser):
+    pass
+
+class Board(models.Model):
+    user1 = models.ForeignKey("User", on_delete=models.CASCADE, related_name="gamer1")
+    user2 = models.ForeignKey("User", on_delete=models.CASCADE, related_name="gamer2")
+    user3 = models.ForeignKey("User", on_delete=models.CASCADE, related_name="gamer3")
+    user4 = models.ForeignKey("User", on_delete=models.CASCADE, related_name="gamer4")
+    board = models.TextField(blank=True)
+    coins = models.TextField(blank=True)
+    rum = models.TextField(blank=True)
+    treasure = models.CharField(max_length=5, default=0)
+    ship1 = models.CharField(max_length=4)
+    ship2 = models.CharField(max_length=4)
+    ship3 = models.CharField(max_length=4)
+    ship4 = models.CharField(max_length=4)
+    bengan = models.CharField(max_length=10)
+    missioner = models.CharField(max_length=10)
+    friday = models.CharField(max_length=10)
+    pirats = models.CharField(max_length=254)
+    gamestart = models.DateTimeField(auto_now_add=True)
+    turn = models.CharField(max_length=1, default=1)
+    ice = models.CharField(max_length=254, blank=True)
+    cave = models.CharField(max_length=2, blank=True)
+    cave_in = models.BooleanField(default=True)
+    first_cave = models.CharField(max_length=8, blank=True)
+    airplane = models.BooleanField(default=True)
+    lighthouse = models.BooleanField(default=True)
+    earthquake = models.BooleanField(default=True)
+    earthquake_tile = models.CharField(max_length=4, default='')
+    mover = models.CharField(max_length=8, blank=True)
+    chosen = models.CharField(max_length=8, blank=True)
+    event = models.CharField(max_length=40, default=0)
+    with_coin = models.CharField(max_length=40, default=0)
+    with_treasure = models.CharField(max_length=40, default=0)
+    cannabis = models.CharField(max_length=2, default=1)
+    cannabis_open = models.CharField(max_length=8, default=99999999)
+    play = models.BooleanField(default=True)
+    winner = models.CharField(max_length=255, default='')
+    killed = models.CharField(max_length=50, default='')
+    impossible = models.CharField(max_length=8, blank=True)
+
+class Turns(models.Model):
+    board = models.ForeignKey("Board", on_delete=models.CASCADE, related_name="board_on")
+    turn_number = models.CharField(max_length=100)
+    from_id = models.CharField(max_length=4)
+    target_id = models.CharField(max_length=4)
+    team = models.CharField(max_length=1)
+    pirat = models.CharField(max_length=1)
+    with_coin = models.CharField(max_length=1)
+    with_treasure = models.CharField(max_length=1)
+    killed = models.CharField(max_length=50, default='')

@@ -1,0 +1,24 @@
+{% extends "game/layout.html" %}
+
+{% block body %}
+
+    <h2>Логин</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input autofocus class="bar" type="text" name="username" placeholder="Имя">
+        </div>
+        <div class="form-group">
+            <input class="bar" type="password" name="password" placeholder="Пароль">
+        </div>
+        <input class="bar" type="submit" value="Логин">
+    </form>
+
+    Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
+
+{% endblock %}

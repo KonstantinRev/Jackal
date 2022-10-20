@@ -1,0 +1,102 @@
+Description of tiles:
+1. First number - indicates is tile open or not
+    -1 means tile is water (or ship on water)
+    1 means it is closed (unknown)
+    2 means it is open
+2. Second number - indicates what type is tile
+    1 means - empty field (18 tiles)
+    2 means - arrow horizontal {4 options} (3 tiles)
+    3 means - arrow diagonal {4 options} (3 tiles)
+    4 means - arrow horizontal both {2 options} (3 tiles)
+    5 means - arrow diagonal both {2 options} (3 tiles)
+    6 means - arrow 3-way {4 options} (3 tiles)
+    7 means - arrow horizontal 4-way (3 tiles)
+    8 means - arrow diagonal 4-way (3 tiles)
+    9 means - horse (2 tiles)
+    10 means - jungle-go (5 tiles)
+    11 means - desert-go (4 tiles)
+    12 means - swamp-go (2 tiles)
+    13 means - waterfall-go (1 tile)
+    14 means - ice (6 tiles)
+    15 means - pit (3 tiles)
+    16 means - croc (4 tiles)
+    17 means - cannibal (1 tile)
+    18 means - fortress (2 tiles)
+    19 means - ressurect (1 tile)
+    20 means - gold1 (5 tiles)
+    21 means - gold2 (5 tiles)
+    22 means - gold3 (3 tiles)
+    23 means - gold4 (2 tiles)
+    24 means - gold5 (1 tile)
+    25 means - treasure (1 tile)
+    26 means - airplane (1 tile)
+    27 means - carramba (1 tile)
+    28 means - balloon (2 tiles)
+    29 means - cannon {4 options} (2 tiles)
+    30 means - lighthouse (1 tile)
+    31 means - Ben Gan (1 tile)
+    32 means - missioner (1 tile)
+    33 means - Friday (1 tile)
+    34 means - Rum1 (3 tiles)
+    35 means - Rum2 (2 tiles)
+    36 means - Rum3 (1 tile)
+    37 means - barrel of rum (4 tiles)
+    38 means - cave (4 tiles)
+    39 means - earthquake (1 tile)
+    40 means - jungle (3 tiles)
+    41 means - cannabis (2 tiles)
+3. Third number - indicates position of tile (for example directions for arrow)
+    1 means - option 1 (arrows 1)
+    2 means - option 2 (arrows 2)
+    3 means - option 3 (arrows 3)
+    4 means - option 4 (arrows 4)
+4. Fourth number - id of tile
+    First two numbers - row
+    Second two numbers position
+    For example - 1111 (First left up tile, invisible)
+
+For example:
+    [1,3,3,1615] - closed arrow diagonal {option 3}
+    [2,14,2,2621] - opened ice
+
+
+Pirats:
+pirats have 4-number code
+0:  ID of tile, where pirat is
+1:  drunk (1 - pirat can't move this turn, he is drunk, 0 - can move)
+2:  pit (1 - pirat can't move, he is in the pit, 0 - can move)
+3:  number of to-go tile (1,2,3,4 - number of layer on to-go tile, 0 - no layers)
+
+BenGan:
+0: found or not, 1 - not found, 2 - found
+1-4: id of tile for BenGan (if not found or dead = 0000)
+5: drunk (1 - BenGan can't move this turn, he is drunk, 0 - can move)
+6: pit (1 - BenGan can't move, he is in the pit, 0 - can move)
+7: number of to-go tile (1,2,3,4 - number of layer on to-go tile, 0 - no layers)
+8: number of team (1-4)
+
+Friday:
+0: found or not, 1 - not found, 2 - found
+1-4: id of tile for Friday (if not found or dead = 0000)
+5: number of team (1-4)
+6: number of to-go tile (always on top layer)
+
+Missioner:
+0: found or not, 1 - not found, 2 - found
+1-4: id of tile for Missioner (if not found or dead = 0000)
+5: drunk (1 - Missioner can't move this turn, he is drunk, 0 - can move)
+6: pit (1 - Missioner can't move, he is in the pit, 0 - can move)
+7: number of to-go tile (1,2,3,4 - number of layer on to-go tile, 0 - no layers)
+8: number of team (1-4)
+9: pirat or not (if missioner is drunk - he became pirat): 0 - missioner, 1 - pirat
+
+Coins:
+number of coins = 37
+coins saved in list, each number = id or team
+    1111 - id of tile
+    0 - coin not found
+    1 - coin is in team 1
+    2 - coin is in team 2
+    3 - coin is in team 3
+    4 - coin is in team 4
+    5 - coin is destroyed

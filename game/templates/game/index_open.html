@@ -1,0 +1,88 @@
+{% extends "game/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="body_block">
+    <div class="board">
+        {% for line in board %}
+            <div class="line">
+            {% for pos in line %}
+                {% if pos.0 < 0 %}
+                    <button class="tile_inv" id="{{ pos.3 }}" disabled="true"></button>
+                {% elif pos.0 == 1 %}
+                    <button class="tile_closed" id="{{ pos.3 }}" disabled="true"></button>
+                {% elif pos.0 == 2 %}
+                    {% if pos.2 != 0 %}
+                        <button class="tile_{{ pos.1 }}_{{ pos.2 }}" id="{{ pos.3 }}" disabled="true"></button>
+                    {% else %}
+                        <button class="tile_{{ pos.1 }}" id="{{ pos.3 }}" disabled="true"></button>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container">
+    <div class="info">
+        <div class="players_turn">
+            Turn: Player №{{ turn }} OPEN BOARD !!!!
+        </div>
+        <div class="pirats_info">
+            {% for pirat in pirats %}
+                {% if pirat.1 > 0 %}
+                <data class="pirats" id="pirat{{ turn }}{{ pirat.0 }}" value="{{ pirat.1 }}" name="{{ pirat.4 }}">
+                    <img src="../static/game/tiles/Pirat{{ turn }}.png" style="width:50%;height:80%;"></img>
+                    <p>{{ pirat.1 }}, dr {{ pirat.2 }}, pit {{ pirat.3 }}, to-go {{ pirat.4 }} №{{ pirat.0 }}</p>
+                </data>
+                {% else %}
+                <div class="pirats">
+                    <p style="height:50%;"></p>
+                    <p>DEAD</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="pirats_info">
+            {% for person in others %}
+            <data class="pirats" id="pirat{{ turn }}{{ person.0 }}" value="{{ person.1 }}" name="{{ person.4 }}">
+                <img src="../static/game/tiles/{{ person.5 }}.png" style="width:50%;height:80%;"></img>
+                <p>{{ person.1 }}, dr {{ person.2 }}, pit {{ person.3 }}, to-go {{ person.4 }} №{{ person.0 }}</p>
+            </data>
+            {% endfor %}
+        </div>
+        <div class="pirats_info">
+            <div>
+                {% for _ in rum %}
+                    <img src="../static/game/tiles/Rum.png" style="width:40px;height:55px;"></img>
+                {% endfor %}
+                {% if coins >= 1 %}
+                    <img src="../static/game/tiles/coin.png" style="width:55px;height:55px;">{{ coins }}</img>
+                {% endif %}
+                {% if treasure == 1 %}
+                    <img src="../static/game/tiles/treasure.png" style="width:55px;height:55px;"></img>
+                {% endif %}
+            </div>
+        </div>
+        <div class="pirats_info">
+            <div>
+                <button id="ressurect" style="display:none;" type="submit">Ressurect</button>
+                <button id="with_coin" style="display:none;" type="submit">With coin</button>
+                <button id="with_treasure" style="display:none;" type="submit">With treasure</button>
+            </div>
+        </div>
+        <footer>
+            <div>
+                <button id="pass_turn" type="submit">Pass Turn</button>
+            </div>
+        </footer>
+    </div>
+    <div id="info_tile" class="tile_closed">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'game/game.js' %}"></script>
+{% endblock %}

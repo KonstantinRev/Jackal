@@ -1,0 +1,79 @@
+{% extends "game/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="board_choose">
+    <h1 class="games">Выбери соперников</h1>
+    <form action="{% url 'create_board' %}" method="post">
+        <div class="games">
+            <div class="bar_inline">
+                <strong>Пират 1</strong>
+            </div>
+            <div class="bar_inline">
+                <input class="input1 input bar" placeholder='Введите имя пользователя'>
+                <select id="pirat1" class="bar bar_select" required="required">
+                    <option class="bar" value="{{ user.username }}">{{ user.username }}</option>
+                </select>
+            </div>
+            <data><strong>Выбран -></strong></data>
+            <div class="bar_inline">
+                <input id="pirat1_chosen" name="pirat1_chosen" value="{{ user.username }}" class="bar bar_inline bar_chosen_total">
+            </div>
+        </div>
+        <div class="games">
+            <div class="bar_inline">
+                <strong>Пират 2</strong>
+            </div>
+            <div class="bar_inline">
+                <input class="input2 input bar" placeholder='Введите имя пользователя'>
+                <select id="pirat2" class="bar bar_select" required="required">
+                    <option class="bar" value="{{ user.username }}">{{ user.username }}</option>
+                </select>
+            </div>
+            <data><strong>Выбран -></strong></data>
+            <div class="bar_inline">
+                <input id="pirat2_chosen" name="pirat2_chosen" value="{{ user.username }}" class="bar bar_inline bar_chosen_total">
+            </div>
+        </div>
+        <div class="games">
+            <div class="bar_inline">
+                <strong>Пират 3</strong>
+            </div>
+            <div class="bar_inline">
+                <input class="input3 input bar" placeholder='Введите имя пользователя'>
+                <select id="pirat3" class="bar bar_select" required="required">
+                    <option class="bar" value="{{ user.username }}">{{ user.username }}</option>
+                </select>
+            </div>
+            <data><strong>Выбран -></strong></data>
+            <div class="bar_inline">
+                <input id="pirat3_chosen" name="pirat3_chosen" value="{{ user.username }}" class="bar bar_inline bar_chosen_total">
+            </div>
+        </div>
+        <div class="games">
+            <div class="bar_inline">
+                <strong>Пират 4</strong>
+            </div>
+            <div class="bar_inline">
+                <input class="input4 input bar" placeholder='Введите имя пользователя'>
+                <select id="pirat4" class="bar bar_select" required="required">
+                    <option class="bar" value="{{ user.username }}">{{ user.username }}</option>
+                </select>
+            </div>
+            <data><strong>Выбран -></strong></data>
+            <div class="bar_inline">
+                <input id="pirat4_chosen" name="pirat4_chosen" value="{{ user.username }}" class="bar bar_inline bar_chosen_total">
+            </div>
+        </div>
+        <button class="create bar" type="submit">Создать игру</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    var USERS = {{ users|safe }};
+    var current_user = '{{ user.username }}'
+</script>
+<script src="{% static 'game/create_game.js' %}"></script>
+{% endblock %}

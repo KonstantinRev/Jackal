@@ -1,0 +1,109 @@
+{% extends "game/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+    <div class="body_block">
+        <div class="board_choose_title">
+            <h1 class="games">Ваши игры</h1>
+        </div>
+            {% for board in boards %}
+                <div class="board_choose">
+                    {% if board.cannabis == '1' %}
+                    <form action="{% url 'board' board.id %}">
+                        {% if board.user1.id == user.id and board.turn == '1' %}
+                            <div class="board_choose_ship_green">
+                        {% elif board.user2.id == user.id and board.turn == '2' %}
+                            <div class="board_choose_ship_green">
+                        {% elif board.user3.id == user.id and board.turn == '3' %}
+                            <div class="board_choose_ship_green">
+                        {% elif board.user4.id == user.id and board.turn == '4' %}
+                            <div class="board_choose_ship_green">
+                        {% else %}
+                            <div class="board_choose_ship">
+                        {% endif %}
+                        <button class="board_button">
+                            <div class="ship_inside">
+                                <div class="board_number">
+                                    Игра №{{ board.id }}
+                                    {% if board.play == False %}Игра окончена{% if board.winner == 'Tie' %}, Ничья{% endif %}
+                                    {% else %}
+                                        {% if board.user1.id == user.id and board.turn == '1' %}Ваш ход{% endif %}
+                                        {% if board.user2.id == user.id and board.turn == '2' %}Ваш ход{% endif %}
+                                        {% if board.user3.id == user.id and board.turn == '3' %}Ваш ход{% endif %}
+                                        {% if board.user4.id == user.id and board.turn == '4' %}Ваш ход{% endif %}
+                                    {% endif %}
+                                </div>
+                                {% if board.play == False %}
+                                    <p class="ship_line">
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 1 = {{ board.user1 }} {% if board.winner == 'user1' %}<a>Победил</a>{% endif %}</a></div>
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 2 = {{ board.user2 }} {% if board.winner == 'user2' %}<a>Победил</a>{% endif %}</a></div>
+                                    </p>
+                                    <p class="ship_line">
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 3 = {{ board.user3 }} {% if board.winner == 'user3' %}<a>Победил</a>{% endif %}</a></div>
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 4 = {{ board.user4 }} {% if board.winner == 'user4' %}<a>Победил</a>{% endif %}</a></div>
+                                    </p>
+                                {% else %}
+                                    <p class="ship_line">
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 1 = {{ board.user1 }} {% if board.turn == '1' %}<a>Ходит</a>{% endif %}</a></div>
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 2 = {{ board.user2 }} {% if board.turn == '2' %}<a>Ходит</a>{% endif %}</a></div>
+                                    </p>
+                                    <p class="ship_line">
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 3 = {{ board.user3 }} {% if board.turn == '3' %}<a>Ходит</a>{% endif %}</a></div>
+                                        <div class="ship_line_padding"><a class="ship_line_pirat">Пират 4 = {{ board.user4 }} {% if board.turn == '4' %}<a>Ходит</a>{% endif %}</a></div>
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </button>
+                    </div>
+                    </form>
+                    {% else %}
+                    <form action="{% url 'board' board.id %}">
+                        {% if board.user1.id == user.id and board.turn == '1' %}
+                            <div class="board_choose_ship_can_green">
+                        {% elif board.user2.id == user.id and board.turn == '2' %}
+                            <div class="board_choose_ship_can_green">
+                        {% elif board.user3.id == user.id and board.turn == '3' %}
+                            <div class="board_choose_ship_can_green">
+                        {% elif board.user4.id == user.id and board.turn == '4' %}
+                            <div class="board_choose_ship_can_green">
+                        {% else %}
+                            <div class="board_choose_ship">
+                        {% endif %}
+                        <button class="board_button">
+                            <div class="ship_inside">
+                                <div class="board_number">
+                                    Игра №{{ board.id }} (Трава)
+                                    {% if board.user1.id == user.id and board.turn == '2' %}Ваш ход{% endif %}
+                                    {% if board.user2.id == user.id and board.turn == '3' %}Ваш ход{% endif %}
+                                    {% if board.user3.id == user.id and board.turn == '4' %}Ваш ход{% endif %}
+                                    {% if board.user4.id == user.id and board.turn == '1' %}Ваш ход{% endif %}
+                                </div>
+                                <p class="ship_line">
+                                    <div class="ship_line_padding"><a class="ship_line_pirat">Пират 1 = {{ board.user2 }} {% if board.turn == '1' %}<a>Ходит</a>{% endif %}</a></div>
+                                    <div class="ship_line_padding"><a class="ship_line_pirat">Пират 2 = {{ board.user3 }} {% if board.turn == '2' %}<a>Ходит</a>{% endif %}</a></div>
+                                </p>
+                                <p class="ship_line">
+                                    <div class="ship_line_padding"><a class="ship_line_pirat">Пират 3 = {{ board.user4 }} {% if board.turn == '3' %}<a>Ходит</a>{% endif %}</a></div>
+                                    <div class="ship_line_padding"><a class="ship_line_pirat">Пират 4 = {{ board.user1 }} {% if board.turn == '4' %}<a>Ходит</a>{% endif %}</a></div>
+                                </p>
+                            </div>
+                        </button>
+                    </div>
+                    </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+    </div>
+    <div class="container">
+        <div class="create_game"><a class="nav-link island_create" href="{% url 'pre_create_board' %}">Создать новую игру</a></div>
+    </div>
+    {% else %}
+        <div class="board_choose">
+            <h1 class="games"><a class="nav-link" href="{% url 'login' %}">Логин</a></h1>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}

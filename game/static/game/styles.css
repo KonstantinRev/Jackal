@@ -1,0 +1,1737 @@
+:root {
+    --mini_pirat_width: 40px;
+    --mini_pirat_height: 40px;
+    --pirat_width: 20px;
+    --pirat_height: 35px;
+    --tile_width: 50px;
+    --tile_height: 50px;
+    --tile_color: black;
+    --tile_background-size: cover;
+    --tile_background-repeat: no-repeat;
+    --tile_border: none;
+    --tile_border-radius: 4px;
+    --tile_position: relative;
+  }
+
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: beige;
+  -webkit-box-shadow: 0 0 0px 1000px #4F341F inset;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  .modal-content {
+    color: beige;
+    background-color: #4F341F;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid rgb(158, 151, 9);
+    width: 80%; 
+  }
+
+  .modalBtn{
+    color: #007bff;
+    cursor: pointer;
+  }
+
+  .modalBtn:hover {
+    color: #2370c2e0;
+    cursor: pointer;
+  }
+  
+  .close {
+    color: #aaa;
+    padding-left: 98%;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .title {
+    text-align: center;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+button:active, button:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+body {
+    background-image: url("tiles/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    padding: 0px;
+    position: absolute;
+    display: inline-block;
+    top: 60px;
+    width: 300px;
+    height: 600px;
+}
+
+.turn_tile {
+    width: 20px;
+    height: 20px;
+}
+
+.input {
+    width: 200px;
+}
+
+.finish {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    color: red;
+    font-size: 30px;
+    text-shadow: black 5px 5px;
+}
+
+.bar {
+    border: none;
+    color: beige;
+    background-image: url("tiles/bar.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline;
+}
+
+.bar_select {
+    background-color: #4F341F;
+}
+
+.bar_inline {
+    display: inline-block;
+}
+
+.bar_chosen {
+    margin: auto;
+}
+
+.bar_chosen_total {
+    width: 185px;
+    height: auto;
+}
+
+.info {
+    display: inline-block;
+    top: 60px;
+    border-radius: 4px;
+    width: 265px;
+    height: 200px;
+    background-image: url("tiles/info.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 25px;
+}
+
+.info_inventory {
+    display: inline-block;
+    top: 60px;
+    border-radius: 4px;
+    width: 265px;
+    height: 200px;
+    background-image: url("tiles/info.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.info_pass {
+    display: inline-block;
+    width: 265px;
+    height: auto;
+}
+
+.action {
+    background: transparent;
+    background-image: url("tiles/button.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 22px;
+    width: inherit;
+    border: none;
+    font-size: 80%;
+}
+
+.action_with {
+    background: transparent;
+    background-image: url("tiles/button2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 22px;
+    width: inherit;
+    border: none;
+    font-size: 80%;
+}
+
+.info_pass_button {
+    background: transparent;
+    background-image: url("tiles/pass.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    width: 140px;
+    height: 65px;
+    margin: auto;
+}
+
+#info_tile {
+    display: inline-block;
+    border: black solid 2px;
+    border-radius: 4px;
+    margin-top: 10px;
+    width: 150px;
+    height: 150px;
+}
+
+.body_block {
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+.players_turn {
+    width: 100%;
+    text-align: center;
+    color: beige;
+}
+
+.mini-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.green {
+    background-color: darkgreen;
+}
+
+.green:hover {
+    cursor: pointer;
+}
+
+.choose:hover {
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+#pass_turn {
+    display: none;
+}
+
+.games {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.create {
+    margin: 0 auto;
+    display: block;
+}
+
+.board {
+    margin: 10px;
+}
+
+.board_button {
+    height: 100%;
+    width: 100%;
+    text-align: justify;
+    background-image: none;
+    background: transparent;
+    border: 0px;
+}
+
+.board_number {
+    text-align: center;
+    padding-bottom: 5px;
+    color: beige;
+}
+
+.board_choose {
+    position: relative;
+    height: 190px;
+    width: 760px;
+}
+
+.board_choose_title {
+    position: relative;
+    height: auto;
+    width: 760px;
+}
+
+.board_choose_ship {
+    position: relative;
+    width: auto;
+    height: 190px;
+    background: transparent;
+    background-image: url("tiles/ship-up.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.board_choose_ship_green {
+    position: relative;
+    width: auto;
+    height: 190px;
+    background: transparent;
+    background-image: url("tiles/ship-up-green.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.board_choose_ship_can {
+    position: relative;
+    width: auto;
+    height: 190px;
+    background: transparent;
+    background-image: url("tiles/ship-up-can.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.board_choose_ship_can_green {
+    position: relative;
+    width: auto;
+    height: 190px;
+    background: transparent;
+    background-image: url("tiles/ship-up-can-green.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.ship_inside {
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.ship_line {
+    padding-bottom: 10px;
+    display:inline;
+}
+
+.ship_line_pirat {
+    padding-left: 100px;
+}
+
+.ship_line_padding {
+    width: 50%;
+    display:inline;
+    float:left;
+    padding-bottom: 25px;
+    color: beige;
+}
+
+.create_game {
+    margin: auto;
+}
+
+.island_create {
+    display: inline-block;
+    top: 60px;
+    width: 400px;
+    height: 400px;
+    background-image: url("tiles/island.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+}
+
+.island_create:hover {
+    color: black;
+}
+
+.line {
+    display: flex;
+}
+
+.pirats_info {
+    height: 45%;
+}
+
+.coin_in_inventory {
+    height: 9%;
+}
+
+.tr_in_inventory {
+    height: 9%;
+}
+
+.rum_in_inventory {
+    height: 100%;
+}
+
+.inv_buttons {
+    display: inline-block;
+    width: 110px;
+    height: auto;
+}
+
+tbody {
+    height: 100%;
+    width: 100%;
+}
+
+.inventory_info {
+    height: 33%;
+}
+
+.treasure {
+    width: 33px;
+    height: 25px;
+    background: transparent;
+    background-image: url("tiles/treasure.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0%;
+    top: 60%;
+    border: none;
+    filter: drop-shadow(5px 5px 10px gold);
+}
+
+.coin {
+    width: 25px;
+    height: 25px;
+    background: transparent;
+    background-image: url("tiles/coin.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 55%;
+    top: 60%;
+    border: none;
+    filter: drop-shadow(5px 5px 10px yellow);
+}
+
+.rum {
+    width: 19px;
+    height: 29px;
+    background: transparent;
+    background-image: url("tiles/Rum2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 45%;
+    border: none;
+    filter: drop-shadow(5px 5px 10px green);
+}
+
+.pirats {
+    float: left;
+    width: 33.333%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.dead {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pirat1 {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/Pirat1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px red);
+    filter: drop-shadow(5px 5px 5px red);
+}
+
+.pirat2 {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/Pirat2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px grey);
+    filter: drop-shadow(5px 5px 5px grey);
+}
+
+.pirat3 {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/Pirat3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px white);
+    filter: drop-shadow(5px 5px 5px white);
+}
+
+.pirat4 {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/Pirat4.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px yellow);
+    filter: drop-shadow(5px 5px 5px yellow);
+}
+
+.bengan {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/BenGan.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px lightgreen);
+    filter: drop-shadow(5px 5px 5px lightgreen);
+}
+
+.friday {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/friday.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px brown);
+    filter: drop-shadow(5px 5px 5px brown);
+}
+
+.missioner {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/missioner.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px blue);
+    filter: drop-shadow(5px 5px 5px blue);
+}
+
+.missioner_pirat {
+    width: var(--pirat_width);
+    height: var(--pirat_height);
+    background: transparent;
+    background-image: url("tiles/missioner-pirat.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px blue);
+    filter: drop-shadow(5px 5px 5px blue);
+}
+
+.mini-pirat11 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-red.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px red);
+    filter: drop-shadow(5px 5px 5px red);
+}
+
+.mini-pirat21 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-grey.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px grey);
+    filter: drop-shadow(5px 5px 5px grey);
+}
+
+.mini-pirat31 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-white.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px white);
+    filter: drop-shadow(5px 5px 5px white);
+}
+
+.mini-pirat41 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-yellow.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px yellow);
+    filter: drop-shadow(5px 5px 5px yellow);
+}
+
+.mini-pirat04 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-bengan.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px green);
+    filter: drop-shadow(5px 5px 5px green);
+}
+
+.mini-pirat05 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-friday.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px brown);
+    filter: drop-shadow(5px 5px 5px brown);
+}
+
+.mini-pirat06 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-missioner.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px blue);
+    filter: drop-shadow(5px 5px 5px blue);
+}
+
+.mini-pirat07 {
+    width: var(--mini_pirat_width);
+    height: var(--mini_pirat_height);
+    background: transparent;
+    background-image: url("tiles/mini-missioner-pirat.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    border: none;
+    -webkit-filter: drop-shadow(5px 5px 5px blue);
+    filter: drop-shadow(5px 5px 5px blue);
+}
+
+.mini-coin {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    background-image: url("tiles/coin.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 5px;
+    text-align: center;
+    position: absolute;
+    border: none;
+    filter: drop-shadow(5px 5px 10px yellow);
+}
+
+.mini-mini-coin {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    background-image: url("tiles/coin.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    border: none;
+    filter: drop-shadow(5px 5px 10px yellow);
+}
+
+.mini-treasure {
+    width: 45px;
+    height: 35px;
+    background: transparent;
+    background-image: url("tiles/treasure.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0%;
+    top: 60%;
+    border: none;
+    filter: drop-shadow(5px 5px 10px gold);
+}
+
+.mini-mini-treasure {
+    width: 15px;
+    height: 13px;
+    background: transparent;
+    background-image: url("tiles/treasure.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0%;
+    top: 60%;
+    border: none;
+    filter: drop-shadow(5px 5px 10px gold);
+}
+
+.layer_coin_10_1 {
+    left: 25%;
+    top: 75%;
+}
+
+.layer_coin_10_2 {
+    left: 45%;
+    top: 0%;
+}
+
+.layer_coin_11_1 {
+    left: 50%;
+    top: 75%;
+}
+
+.layer_coin_11_2 {
+    left: 45%;
+    top: 40%;
+}
+
+.layer_coin_11_3 {
+    left: 50%;
+    top: 0%;
+}
+
+.layer_coin_12_1 {
+    left: 50%;
+    top: 80%;
+}
+
+.layer_coin_12_2 {
+    left: 35%;
+    top: 55%;
+}
+
+.layer_coin_12_3 {
+    left: 40%;
+    top: 20%;
+}
+
+.layer_coin_12_4 {
+    left: 40%;
+    top: 0%;
+}
+
+.layer_coin_13_1 {
+    left: 72%;
+    top: 57%;
+}
+
+.layer_coin_13_2 {
+    left: 30%;
+    top: 60%;
+}
+
+.layer_coin_13_3 {
+    left: 20%;
+    top: 30%;
+}
+
+.layer_coin_13_4 {
+    left: 44%;
+    top: 16%;
+}
+
+.layer_coin_13_5 {
+    left: 78%;
+    top: 20%;
+}
+
+.layer_treasure_10_1 {
+    left: 5%;
+    top: 55%;
+}
+
+.layer_treasure_10_2 {
+    left: 65%;
+    top: 20%;
+}
+
+.layer_treasure_11_1 {
+    left: 70%;
+    top: 60%;
+}
+
+.layer_treasure_11_2 {
+    left: 5%;
+    top: 40%;
+}
+
+.layer_treasure_11_3 {
+    left: 70%;
+    top: 20%;
+}
+
+.layer_treasure_12_1 {
+    left: 65%;
+    top: 65%;
+}
+
+.layer_treasure_12_2 {
+    left: 20%;
+    top: 75%;
+}
+
+.layer_treasure_12_3 {
+    left: 65%;
+    top: 35%;
+}
+
+.layer_treasure_12_4 {
+    left: 15%;
+    top: 15%;
+}
+
+.layer_treasure_13_1 {
+    left: 62%;
+    top: 57%;
+}
+
+.layer_treasure_13_2 {
+    left: 30%;
+    top: 70%;
+}
+
+.layer_treasure_13_3 {
+    left: 10%;
+    top: 20%;
+}
+
+.layer_treasure_13_4 {
+    left: 50%;
+    top: 4%;
+}
+
+.layer_treasure_13_5 {
+    left: 63%;
+    top: 20%;
+}
+
+.layer_10_1 {
+    left: 5%;
+    top: 75%;
+}
+
+.layer_10_2 {
+    left: 65%;
+    top: 0%;
+}
+
+.layer_11_1 {
+    left: 70%;
+    top: 75%;
+}
+
+.layer_11_2 {
+    left: 25%;
+    top: 40%;
+}
+
+.layer_11_3 {
+    left: 70%;
+    top: 0%;
+}
+
+.layer_12_1 {
+    left: 70%;
+    top: 80%;
+}
+
+.layer_12_2 {
+    left: 15%;
+    top: 55%;
+}
+
+.layer_12_3 {
+    left: 60%;
+    top: 20%;
+}
+
+.layer_12_4 {
+    left: 20%;
+    top: 0%;
+}
+
+.layer_13_1 {
+    left: 72%;
+    top: 72%;
+}
+
+.layer_13_2 {
+    left: 20%;
+    top: 70%;
+}
+
+.layer_13_3 {
+    left: 10%;
+    top: 30%;
+}
+
+.layer_13_4 {
+    left: 38%;
+    top: 6%;
+}
+
+.layer_13_5 {
+    left: 78%;
+    top: 8%;
+}
+
+.tile_inv {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    background: transparent;
+    border: none;
+    position: relative;
+}
+
+.water {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    background: transparent;
+    background-image: url("tiles/water.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    background-size: contain;
+    border: none;
+}
+
+.ship1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/ship1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.ship2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/ship2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.ship3 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/ship3.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.ship4 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/ship4.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_closed {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_1_1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile1_1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_1_2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile1_2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_1_3 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile1_3.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_1_4 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile1_4.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_2_1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile2_1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_2_2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile2_2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_2_3 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile2_3.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_2_4 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile2_4.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_3_1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile3_1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_3_2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile3_2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_3_3 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile3_3.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_3_4 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile3_4.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_4_1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile4_1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_4_2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile4_2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_5_1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile5_1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_5_2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile5_2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_6_1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile6_1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_6_2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile6_2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_6_3 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile6_3.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_6_4 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile6_4.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_7 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile7.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_8 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile8.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_9 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile9.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_10 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile10.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_11 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile11.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_12 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile12.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_13 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile13.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_14 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile14.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_15 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile15.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_16 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile16.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_17 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile17.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_18 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile18.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_19 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile19.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_20 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile20.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_21 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile21.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_22 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile22.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_23 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile23.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_24 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile24.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_25 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile25.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_26 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile26.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_27 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile27.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_28 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile28.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_29_1 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile29_1.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_29_2 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile29_2.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_29_3 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile29_3.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_29_4 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile29_4.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_30 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile30.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_31 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile31.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_32 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile32.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_33 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile33.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_34 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile34.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_35 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile35.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_36 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile36.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_37 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile37.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_38 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile38.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_39 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile39.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_40 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile40.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
+
+.tile_41 {
+    width: var(--tile_width);
+    height: var(--tile_height);
+    color: var(--tile_color);
+    background-image: url("tiles/tile41.png");
+    background-size: var(--tile_background-size);
+    background-repeat: var(--tile_background-repeat);
+    border: var(--tile_border);
+    border-radius: var(--tile_border-radius);
+    position: var(--tile_position);
+}
